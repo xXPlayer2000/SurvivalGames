@@ -1,0 +1,10 @@
+name: SurvivalGames
+version: 1.0
+author: devcode
+main: me.devcode.SurvivalGames.SurvivalGames
+commands:
+  setlobby:
+  setspawn:
+  setdspawn:
+  start:
+  stats:
