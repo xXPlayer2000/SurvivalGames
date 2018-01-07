@@ -26,6 +26,7 @@ public class ChestListeners implements Listener{
 
     private HashMap<Location, Inventory> sgChests = new HashMap<>();
     private ArrayList<Location> placed = new ArrayList<>();
+    //Chest can be configurated in the chest.yml
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
         Player player = e.getPlayer();

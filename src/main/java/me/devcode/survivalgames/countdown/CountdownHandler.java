@@ -126,7 +126,7 @@ public class CountdownHandler {
                             SurvivalGames.plugin.playerUtils.getPlayers().forEach((player ->
                                     SurvivalGames.plugin.ingameUtils.updateScoreboard(player)));
 
-
+                            //Refill after time
                             if(inGameTimer == 750) {
                                 SurvivalGames.plugin.playerUtils.getPlayers().forEach((player ->
                                        player.sendMessage(SurvivalGames.plugin.messageUtils.getRefilled());
