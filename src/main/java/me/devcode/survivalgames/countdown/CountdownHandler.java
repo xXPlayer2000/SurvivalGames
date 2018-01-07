@@ -127,7 +127,7 @@ public class CountdownHandler {
                                 SurvivalGames.plugin.playerUtils.getPlayers().forEach((player ->
 
                                         SurvivalGames.plugin.ingameUtils.getscoreboard.remove(player)));
-
+                                        SurvivalGames.plugin.ingameUtils.onTP2();
                                 onDeathMatch();
                                 cancel();
 

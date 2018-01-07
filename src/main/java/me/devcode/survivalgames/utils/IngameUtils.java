@@ -14,32 +14,32 @@ import java.util.HashMap;
 
 import me.devcode.survivalgames.SurvivalGames;
 public class IngameUtils {
-
+        
     private HashMap<Player, Integer> kills = new HashMap<>();
-
+    //Adds kill to a Player
     public void addKill(Player player, Integer kill) {
         if(!kills.containsKey(player))
             kills.put(player, 0);
         kills.put(player, kills.get(player)+0);
     }
-
+    //Teleports a Player to the Lobby
     public void teleportPlayer(Player player) {
-        if(SurvivalGames.plugin.getConfig().getString("survivalgames.World") == null) {
+        if(SurvivalGames.plugin.getConfig().getString("SurvivalGames.World") == null) {
             return;
         }
-        World world = Bukkit.getWorld(SurvivalGames.plugin.getConfig().getString("survivalgames.World"));
-        double x = SurvivalGames.plugin.getConfig().getDouble("survivalgames.X");
-        double y = SurvivalGames.plugin.getConfig().getDouble("survivalgames.Y");
-        double z = SurvivalGames.plugin.getConfig().getDouble("survivalgames.Z");
-        double yaw = SurvivalGames.plugin.getConfig().getDouble("survivalgames.Yaw");
-        double pitch = SurvivalGames.plugin.getConfig().getDouble("survivalgames.Pitch");
+        World world = Bukkit.getWorld(SurvivalGames.plugin.getConfig().getString("SurvivalGames.World"));
+        double x = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.X");
+        double y = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.Y");
+        double z = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.Z");
+        double yaw = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.Yaw");
+        double pitch = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.Pitch");
         player.teleport(new Location(world, x, y, z, (float)yaw, (float)pitch));
     }
 
 
 
     private ArrayList<Location> spawnLocs2 = new ArrayList<>();
-
+    //Setting the Deathmatch spawns
     private void onTeleport2() {
         if(SurvivalGames.plugin.getConfig().getConfigurationSection("DSpawn.") == null) {
             for(Player all : Bukkit.getOnlinePlayers()) {
@@ -57,7 +57,7 @@ public class IngameUtils {
             spawnLocs2.add(new Location(world, x, y, z, yaw, pitch));
         }
     }
-
+    //Teleporting to DM
     public void onTP2() {
         onTeleport2();
         for(int i = 0; i < SurvivalGames.plugin.playerUtils.getPlayers().size(); i++) {
@@ -71,7 +71,7 @@ public class IngameUtils {
     }
 
     private ArrayList<Location> spawnLocs = new ArrayList<>();
-
+    //Setting the Ingame spawns
     private void onTeleport() {
         if(SurvivalGames.plugin.getConfig().getConfigurationSection("Spawn.") == null) {
             for(Player all : Bukkit.getOnlinePlayers()) {
@@ -89,7 +89,7 @@ public class IngameUtils {
             spawnLocs.add(new Location(world, x, y, z, yaw, pitch));
         }
     }
-
+    //Teleporting to Ingame
     public void onTP() {
         onTeleport();
         for(int i = 0; i < SurvivalGames.plugin.playerUtils.getPlayers().size(); i++) {
@@ -102,7 +102,7 @@ public class IngameUtils {
             }
         }
     }
-
+    //Setting a win
     public void setWin() {
         if(SurvivalGames.plugin.playerUtils.getPlayers().size() == 1) {
             Player winner = SurvivalGames.plugin.playerUtils.getPlayers().get(0);
@@ -120,7 +120,7 @@ public class IngameUtils {
         }
     }
 
-
+    //Updating a scoreboard
     public HashMap<Player, Scoreboard> getscoreboard = new HashMap<>();
     public void updateScoreboard(Player player) {
         if(SurvivalGames.plugin.status == Status.INGAME) {
