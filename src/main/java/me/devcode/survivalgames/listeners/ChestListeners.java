@@ -54,7 +54,7 @@ public class ChestListeners implements Listener{
                         int i = 19;
                         Inventory inv = Bukkit.createInventory(null, InventoryType.CHEST);
                         List<ItemStack> items = new ArrayList<>();
-                        for(String all : SurvivalGames.plugin.cfg.getStringList("items")) {
+                       SurvivalGames.plugin.cfg.getStringList("items").forEach(all -> {
                             int ID = 0;
                             int subID = 0;
                             int amount = 0;
@@ -80,7 +80,7 @@ public class ChestListeners implements Listener{
                             for(int i2 =0; i2 < chance; i2++) {
                                 items.add(stack);
                             }
-                        }
+                        });
                         while(i != 0) {
                             i--;
                             int chestrandom = ran.nextInt(27);

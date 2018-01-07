@@ -11,10 +11,11 @@ import lombok.Getter;
 @Getter
 public class MessageUtils {
 	
-	private String prefix, death, killplayer, lobbycountdown, nomove, ingamecountdown, refill, refilled, deathmatch, notenoughplayer, noDamagecountdown, goodluck, lobbyname,
-	serverrestart, win, winner, winnertitle, servername, spielerjoin, spielerleave, distancetotracked, map;
-	private Integer minplayers = 8;
-	private boolean teamsallowed;
+	private String prefix, death, killPlayer, lobbyCountdown, noMove, ingameCountdown, refill, refilled,
+			deathMatch, noteEnoughPlayer, noDamageCountdown, goodLuck, lobbyName,
+	serverRestart, win, winner, winnerTitle, serverName, spielerJoin, spielerLeave, distanceToTracked, map;
+	private Integer minPlayers = 8;
+	private boolean teamsAllowed;
 	private File file = new File("plugins/survivalgames", "ingame.yml");
 	private FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
 
@@ -51,29 +52,29 @@ public class MessageUtils {
 		}
 
 		map = getFileConfiguration().getString("Game.Map");
-		teamsallowed = getFileConfiguration().getBoolean("Game.TeamsAllowed");
-		minplayers = getFileConfiguration().getInt("Game.MinPlayers");
+		teamsAllowed = getFileConfiguration().getBoolean("Game.TeamsAllowed");
+		minPlayers = getFileConfiguration().getInt("Game.MinPlayers");
 		prefix = getFileConfiguration().getString("Messages.Prefix").replace("&", "§");
-		distancetotracked = prefix + getFileConfiguration().getString("Messages.DistanceTrackedPlayer").replace("&", "§");
+		distanceToTracked = prefix + getFileConfiguration().getString("Messages.DistanceTrackedPlayer").replace("&", "§");
 		death = prefix + getFileConfiguration().getString("Messages.Death").replace("&", "§");
-		killplayer = prefix + getFileConfiguration().getString("Messages.KillPlayer").replace("&", "§");
-		lobbycountdown = prefix + getFileConfiguration().getString("Messages.LobbyCountdown").replace("&", "§");
-		nomove = prefix + getFileConfiguration().getString("Messages.NoMoveCountdown").replace("&", "§");
-		ingamecountdown = prefix + getFileConfiguration().getString("Messages.IngameCountdown").replace("&", "§");
+		killPlayer = prefix + getFileConfiguration().getString("Messages.KillPlayer").replace("&", "§");
+		lobbyCountdown = prefix + getFileConfiguration().getString("Messages.LobbyCountdown").replace("&", "§");
+		noMove = prefix + getFileConfiguration().getString("Messages.NoMoveCountdown").replace("&", "§");
+		ingameCountdown = prefix + getFileConfiguration().getString("Messages.IngameCountdown").replace("&", "§");
 		refill = prefix + getFileConfiguration().getString("Messages.Refill").replace("&", "§");
 		refilled = prefix + getFileConfiguration().getString("Messages.Refilled").replace("&", "§");
-		deathmatch = prefix + getFileConfiguration().getString("Messages.LobbyCountdown").replace("&", "§");
-		notenoughplayer = prefix + getFileConfiguration().getString("Messages.NotEnoughPlayer").replace("&", "§");
-		noDamagecountdown = prefix + getFileConfiguration().getString("Messages.NoDamageCountdown").replace("&", "§");
-		goodluck =  prefix +getFileConfiguration().getString("Messages.GoodLuck").replace("&", "§");
-		lobbyname = getFileConfiguration().getString("Countdown.LobbyTeleportName");
-		serverrestart = prefix + getFileConfiguration().getString("Messages.ServerRestart").replace("&", "§");
-		servername = getFileConfiguration().getString("Scoreboard.ServerName");
-		winnertitle =  getFileConfiguration().getString("Messages.WinnerTitle").replace("&", "§");
+		deathMatch = prefix + getFileConfiguration().getString("Messages.LobbyCountdown").replace("&", "§");
+		noteEnoughPlayer = prefix + getFileConfiguration().getString("Messages.NotEnoughPlayer").replace("&", "§");
+		noDamageCountdown = prefix + getFileConfiguration().getString("Messages.NoDamageCountdown").replace("&", "§");
+		goodLuck =  prefix +getFileConfiguration().getString("Messages.GoodLuck").replace("&", "§");
+		lobbyName = getFileConfiguration().getString("Countdown.LobbyTeleportName");
+		serverRestart = prefix + getFileConfiguration().getString("Messages.ServerRestart").replace("&", "§");
+		serverName = getFileConfiguration().getString("Scoreboard.ServerName");
+		winnerTitle =  getFileConfiguration().getString("Messages.WinnerTitle").replace("&", "§");
 		winner =  getFileConfiguration().getString("Messages.Winner").replace("&", "§");
 		win =  getFileConfiguration().getString("Messages.Win").replace("&", "§");
-		spielerjoin = prefix + getFileConfiguration().getString("Messages.PlayerJoin").replace("&", "§");
-		spielerleave = prefix + getFileConfiguration().getString("Messages.PlayerLeave").replace("&", "§");
+		spielerJoin = prefix + getFileConfiguration().getString("Messages.PlayerJoin").replace("&", "§");
+		spielerLeave = prefix + getFileConfiguration().getString("Messages.PlayerLeave").replace("&", "§");
 	}
 
 }

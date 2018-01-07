@@ -92,25 +92,23 @@ public class SurvivalGames extends JavaPlugin{
         registerEvents();
         registerCommands();
         mysqlStuff();
-        for(String worlds : getConfig().getStringList("Worlds.Load")) {
-            new WorldCreator(worlds).createWorld();
-        }
-        for(World world : Bukkit.getWorlds()) {
+       getConfig().getStringList("Worlds.Load").forEach(worlds -> {
+           new WorldCreator(worlds).createWorld();
+       });
+            Bukkit.getWorlds().forEach(world -> {
             Bukkit.unloadWorld(world.getName(), false);
-            for(Entity en : world.getEntities()) {
+        world.getEntities().forEach(en -> {
                 if(!(en instanceof Player)) {
                     en.remove();
                 }
-            }
-            for(Chunk chunk : world.getLoadedChunks()) {
-                world.loadChunk(chunk);
-            }
+            });
+
             world.setAutoSave(false);
             world.setTime(1000);
             if(!new File(world.getName()+"Backup").exists()) {
                 copyFileStructure(world.getWorldFolder(), new File(world.getName()+"Backup"));
             }
-        }
+        });
         new BukkitRunnable() {
                     @Override public void run() {
                      //Check if mysql is still connected if not > reconnect
@@ -139,11 +137,11 @@ public class SurvivalGames extends JavaPlugin{
 
     @Override
     public void onDisable() {
-        for(World world : Bukkit.getWorlds()) {
+            Bukkit.getWorlds().forEach(world -> {
 
             deleteWorld(world.getWorldFolder());
             copyFileStructure(new File(world.getName()+"Backup"), new File(world.getName()));
-        }
+        });
         mysql.getMySQL().closeConnection();
     }
 

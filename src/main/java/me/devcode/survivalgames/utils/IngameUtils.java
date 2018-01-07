@@ -11,7 +11,6 @@ import org.bukkit.scoreboard.Team;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.function.Consumer;
 
 import me.devcode.survivalgames.SurvivalGames;
 public class IngameUtils {
@@ -109,14 +108,13 @@ public class IngameUtils {
             Player winner = SurvivalGames.plugin.playerUtils.getPlayers().get(0);
             winner.sendMessage(SurvivalGames.plugin.messageUtils.getWin());
             SurvivalGames.plugin.mysqlUtils.addWinsByPlayer(winner.getPlayer().getUniqueId().toString());
-            Bukkit.getOnlinePlayers().forEach(new Consumer<Player>() {
-                @Override
-                public void accept(Player player) {
+            Bukkit.getOnlinePlayers().forEach(player -> {
+
                     if(player != winner) {
                         player.sendMessage(SurvivalGames.plugin.messageUtils.getWinner().replace("%PLAYER%", player.getName()));
                     }
-                    TitleApi.sendTitel(player, SurvivalGames.plugin.messageUtils.getWinnertitle().replace("%PLAYER%", player.getName()));
-                }
+                    TitleApi.sendTitel(player, SurvivalGames.plugin.messageUtils.getWinnerTitle().replace("%PLAYER%", player.getName()));
+
             });
             SurvivalGames.plugin.countdownHandler.onEnd();
         }
@@ -128,7 +126,7 @@ public class IngameUtils {
         if(SurvivalGames.plugin.status == Status.INGAME) {
         if(getscoreboard.containsKey(player)) {
             Scoreboard board = getscoreboard.get(player);
-            int totalSecs = SurvivalGames.plugin.countdownHandler.ingameTimer;
+            int totalSecs = SurvivalGames.plugin.countdownHandler.inGameTimer;
             int minutes =(totalSecs %3600)/60;
             int seconds = totalSecs %60;
 
@@ -150,7 +148,7 @@ public class IngameUtils {
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
             System.out.println("de");
 
-            int totalSecs = SurvivalGames.plugin.countdownHandler.ingameTimer;
+            int totalSecs = SurvivalGames.plugin.countdownHandler.inGameTimer;
             int minutes =(totalSecs %3600)/60;
             int seconds = totalSecs %60;
 
@@ -164,7 +162,7 @@ public class IngameUtils {
             Team teams = board.registerNewTeam("teams");
             teams.setPrefix("§fTeams§8: ");
 
-            if(SurvivalGames.plugin.messageUtils.isTeamsallowed()) {
+            if(SurvivalGames.plugin.messageUtils.isTeamsAllowed()) {
                 teams.setSuffix("§aallowed");
             }else{
                 teams.setSuffix("§cforbidden");
@@ -191,7 +189,7 @@ public class IngameUtils {
             obj.getScore("§o").setScore(3);
             obj.getScore("§b").setScore(2);
             System.out.println("aaaaaaa");
-            obj.getScore(SurvivalGames.plugin.messageUtils.getServername()).setScore(1);
+            obj.getScore(SurvivalGames.plugin.messageUtils.getServerName()).setScore(1);
             player.setScoreboard(board);
             System.out.println(board.getEntries() + ":" + board.getPlayers());
             getscoreboard.put(player, board);
@@ -200,7 +198,7 @@ public class IngameUtils {
         if(SurvivalGames.plugin.status == Status.DEATHMATCH) {
             if(getscoreboard.containsKey(player)) {
                 Scoreboard board = getscoreboard.get(player);
-                int totalSecs = SurvivalGames.plugin.countdownHandler.deathmatchTimer;
+                int totalSecs = SurvivalGames.plugin.countdownHandler.deathMatchTimer;
                 int minutes =(totalSecs %3600)/60;
                 int seconds = totalSecs %60;
 
@@ -226,7 +224,7 @@ public class IngameUtils {
             obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
 
-            int totalSecs = SurvivalGames.plugin.countdownHandler.deathmatchTimer;
+            int totalSecs = SurvivalGames.plugin.countdownHandler.deathMatchTimer;
             int minutes =(totalSecs %3600)/60;
             int seconds = totalSecs %60;
 
@@ -240,7 +238,7 @@ public class IngameUtils {
             Team teams = board.registerNewTeam("teams");
             teams.setPrefix("§fTeams§8: ");
 
-            if(SurvivalGames.plugin.messageUtils.isTeamsallowed()) {
+            if(SurvivalGames.plugin.messageUtils.isTeamsAllowed()) {
                 teams.setSuffix("§aallowed");
             }else{
                 teams.setSuffix("§cforbidden");
@@ -266,7 +264,7 @@ public class IngameUtils {
             spieler.addEntry("§o");
             obj.getScore("§o").setScore(3);
             obj.getScore("§b").setScore(2);
-            obj.getScore(SurvivalGames.plugin.messageUtils.getServername()).setScore(1);
+            obj.getScore(SurvivalGames.plugin.messageUtils.getServerName()).setScore(1);
             player.setScoreboard(board);
             getscoreboard.put(player, board);
             return;

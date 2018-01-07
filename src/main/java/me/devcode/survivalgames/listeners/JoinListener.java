@@ -6,12 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.potion.PotionEffect;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.function.Consumer;
 
 import me.devcode.survivalgames.SurvivalGames;
 import me.devcode.survivalgames.utils.Status;
@@ -30,11 +27,10 @@ public class JoinListener implements Listener{
         player.getInventory().clear();
         player.getInventory().setArmorContents(null);
         player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-        player.getActivePotionEffects().forEach(new Consumer<PotionEffect>() {
-            @Override
-            public void accept(PotionEffect potionEffect) {
+        player.getActivePotionEffects().forEach(potionEffect ->  {
+
                 player.removePotionEffect(potionEffect.getType());
-            }
+
         });
         if(SurvivalGames.plugin.status == Status.LOBBY) {
             SurvivalGames.plugin.ingameUtils.teleportPlayer(player);
@@ -44,18 +40,21 @@ public class JoinListener implements Listener{
             player.setAllowFlight(false);
             SurvivalGames.plugin.playerUtils.addPlayer(player);
             SurvivalGames.plugin.playerUtils.addPlayer2(player);
-            e.setJoinMessage(SurvivalGames.plugin.messageUtils.getSpielerjoin().replace("%PLAYER%", player.getName()));
+            e.setJoinMessage(SurvivalGames.plugin.messageUtils.getSpielerJoin().replace("%PLAYER%", player.getName()));
 
-            ExecutorService service = Executors.newCachedThreadPool();
-            service.execute(() ->{
-                SurvivalGames.plugin.methods.createPlayer(player.getUniqueId().toString(), player.getName());
-                SurvivalGames.plugin.mysqlUtils.setMapValues(player);
-                if(SurvivalGames.plugin.playerUtils.getPlayers().size() >= SurvivalGames.plugin.messageUtils.getMinplayers()) {
-                    if(!SurvivalGames.plugin.countdownHandler.started)
-                        SurvivalGames.plugin.countdownHandler.onLobby();
+            new BukkitRunnable() {
+
+                @Override
+                public void run() {
+                    SurvivalGames.plugin.methods.createPlayer(player.getUniqueId().toString(), player.getName());
+                    SurvivalGames.plugin.mysqlUtils.setMapValues(player);
+                    if (SurvivalGames.plugin.playerUtils.getPlayers().size() >= SurvivalGames.plugin.messageUtils.getMinPlayers()) {
+                        if (!SurvivalGames.plugin.countdownHandler.started)
+                            SurvivalGames.plugin.countdownHandler.onLobby();
+                    }
+                    cancel();
                 }
-                service.shutdown();
-            });
+            }.runTaskAsynchronously(SurvivalGames.plugin);
 
             return;
         }

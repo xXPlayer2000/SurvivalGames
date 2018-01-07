@@ -9,7 +9,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import java.util.Random;
-import java.util.function.Consumer;
 
 import me.devcode.survivalgames.SurvivalGames;
 
@@ -38,13 +37,12 @@ public class DeathListener implements Listener{
         player.setWalkSpeed((float)0.2);
         player.setGameMode(GameMode.SPECTATOR);
         SurvivalGames.plugin.ingameUtils.setWin();
-        Bukkit.getOnlinePlayers().forEach(new Consumer<Player>() {
-            @Override
-            public void accept(Player player2) {
+        Bukkit.getOnlinePlayers().forEach(player2 ->{
+
 
                 if(player2 != player)
                     player2.hidePlayer(player);
-            }
+
         });
 
 
