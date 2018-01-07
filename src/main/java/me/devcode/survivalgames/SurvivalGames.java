@@ -64,9 +64,9 @@ public class SurvivalGames extends JavaPlugin{
         status = Status.LOBBY;
         messageUtils = new MessageUtils();
         System.out.println("survivalgames enabled.");
-        getConfig().addDefault("mysql.Host", "localhost");
-        getConfig().addDefault("mysql.User", "USER");
-        getConfig().addDefault("mysql.Password", "PASSWORD");
+        getConfig().addDefault("MySQL.Host", "localhost");
+        getConfig().addDefault("MySQL.User", "USER");
+        getConfig().addDefault("MySQL.Password", "PASSWORD");
         getConfig().addDefault("mysql.Database", "DATABASE");
         getConfig().addDefault("Worlds.Load", Arrays.asList("world2", "world3"));
         getConfig().addDefault("Blocks.Place.Allowed", Arrays.asList(1,2,3,4));
@@ -191,7 +191,7 @@ public class SurvivalGames extends JavaPlugin{
     }
 
     public void mysqlStuff() {
-        plugin.mysql = new AsyncMySql(plugin, plugin.getConfig().getString("mysql.Host"), 3306, plugin.getConfig().getString("mysql.User"), plugin.getConfig().getString("mysql.Password"),plugin.getConfig().getString("mysql.Database"));
+        plugin.mysql = new AsyncMySql(plugin, plugin.getConfig().getString("MySQL.Host"), 3306, plugin.getConfig().getString("MySQL.User"), plugin.getConfig().getString("MySQL.Password"),plugin.getConfig().getString("MySQL.Database"));
         mysql.update("CREATE TABLE IF NOT EXISTS survivalgames(UUID varchar(64), NAME varchar(64), KILLS int, DEATHS int, WINS int, GAMES int);");
         //methods.setRanks();
     }
