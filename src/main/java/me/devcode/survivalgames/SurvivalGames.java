@@ -118,6 +118,7 @@ public class SurvivalGames extends JavaPlugin{
     }
 
     public void registerEvents() {
+        //Register Events
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new JoinListener(), this);
         pm.registerEvents(new QuitListener(), this);
@@ -128,6 +129,7 @@ public class SurvivalGames extends JavaPlugin{
     }
 
     public void registerCommands() {
+        //Register Commands
         getCommand("setlobby").setExecutor(new SetLobby());
         getCommand("setspawn").setExecutor(new SetSpawn());
         getCommand("setdspawn").setExecutor(new SetSpawn2());
