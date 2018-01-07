@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Utils;
+package me.devcode.survivalgames.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-import lombok.Getter;
-import me.devcode.SurvivalGames.SurvivalGames;
+import me.devcode.survivalgames.SurvivalGames;
 public class IngameUtils {
 
     private HashMap<Player, Integer> kills = new HashMap<>();
@@ -26,15 +25,15 @@ public class IngameUtils {
     }
 
     public void teleportPlayer(Player player) {
-        if(SurvivalGames.plugin.getConfig().getString("SurvivalGames.World") == null) {
+        if(SurvivalGames.plugin.getConfig().getString("survivalgames.World") == null) {
             return;
         }
-        World world = Bukkit.getWorld(SurvivalGames.plugin.getConfig().getString("SurvivalGames.World"));
-        double x = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.X");
-        double y = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.Y");
-        double z = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.Z");
-        double yaw = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.Yaw");
-        double pitch = SurvivalGames.plugin.getConfig().getDouble("SurvivalGames.Pitch");
+        World world = Bukkit.getWorld(SurvivalGames.plugin.getConfig().getString("survivalgames.World"));
+        double x = SurvivalGames.plugin.getConfig().getDouble("survivalgames.X");
+        double y = SurvivalGames.plugin.getConfig().getDouble("survivalgames.Y");
+        double z = SurvivalGames.plugin.getConfig().getDouble("survivalgames.Z");
+        double yaw = SurvivalGames.plugin.getConfig().getDouble("survivalgames.Yaw");
+        double pitch = SurvivalGames.plugin.getConfig().getDouble("survivalgames.Pitch");
         player.teleport(new Location(world, x, y, z, (float)yaw, (float)pitch));
     }
 
@@ -116,7 +115,7 @@ public class IngameUtils {
                     if(player != winner) {
                         player.sendMessage(SurvivalGames.plugin.messageUtils.getWinner().replace("%PLAYER%", player.getName()));
                     }
-                    myBar.sendTitel(player, SurvivalGames.plugin.messageUtils.getWinnertitle().replace("%PLAYER%", player.getName()));
+                    TitleApi.sendTitel(player, SurvivalGames.plugin.messageUtils.getWinnertitle().replace("%PLAYER%", player.getName()));
                 }
             });
             SurvivalGames.plugin.countdownHandler.onEnd();

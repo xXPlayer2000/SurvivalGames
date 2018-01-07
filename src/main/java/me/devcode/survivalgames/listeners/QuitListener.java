@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Listeners;
+package me.devcode.survivalgames.listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,9 +8,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import me.devcode.SurvivalGames.SurvivalGames;
-import me.devcode.SurvivalGames.Utils.PlayerUtils;
-import me.devcode.SurvivalGames.Utils.Status;
+import me.devcode.survivalgames.SurvivalGames;
+import me.devcode.survivalgames.utils.Status;
 
 public class QuitListener implements Listener{
 

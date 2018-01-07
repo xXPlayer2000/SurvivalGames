@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Listeners;
+package me.devcode.survivalgames.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Random;
 
 import lombok.Getter;
-import me.devcode.SurvivalGames.SurvivalGames;
-import me.devcode.SurvivalGames.Utils.Status;
+import me.devcode.survivalgames.SurvivalGames;
+import me.devcode.survivalgames.utils.Status;
 @Getter
 public class ChestListeners implements Listener{
 

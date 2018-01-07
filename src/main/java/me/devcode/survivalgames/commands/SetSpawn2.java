@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Commands;
+package me.devcode.survivalgames.commands;
 
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.devcode.SurvivalGames.SurvivalGames;
+import me.devcode.survivalgames.SurvivalGames;
 
 public class SetSpawn2 implements CommandExecutor{
 	

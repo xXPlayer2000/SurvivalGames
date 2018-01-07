@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Utils;
+package me.devcode.survivalgames.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -13,7 +13,7 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
  
  
  
-public class myBar {
+public class TitleApi {
    
    
    

@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.MySQL;
+package me.devcode.survivalgames.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,20 +13,20 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
-public class AsyncMySQL {
+public class AsyncMySql {
 
 	private ExecutorService executor;
 	private Plugin plugin;
 	private MySQL sql;
 
-	public AsyncMySQL(Plugin plugin, String host, int port, String user, String password, String database) {
+	public AsyncMySql(Plugin plugin, String host, int port, String user, String password, String database) {
 		try {
 			sql = new MySQL(host, port, user, password, database);
 			executor = Executors.newCachedThreadPool();
 			this.plugin = plugin;
-			Logger.getLogger("").info("MySQL > Connected.");
+			Logger.getLogger("").info("mysql > Connected.");
 		} catch (Exception e) {
-			Logger.getLogger("").info("Error. Couldnt connect to your MySQL-DB.");
+			Logger.getLogger("").info("Error. Couldnt connect to your mysql-DB.");
 			Logger.getLogger("").info("Der Server stoppt nun.");
 			Bukkit.shutdown();
 			return;

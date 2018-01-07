@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Utils;
+package me.devcode.survivalgames.utils;
 
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,7 +15,7 @@ public class MessageUtils {
 	serverrestart, win, winner, winnertitle, servername, spielerjoin, spielerleave, distancetotracked, map;
 	private Integer minplayers = 8;
 	private boolean teamsallowed;
-	private File file = new File("plugins/SurvivalGames", "ingame.yml");
+	private File file = new File("plugins/survivalgames", "ingame.yml");
 	private FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
 
 	public MessageUtils() {

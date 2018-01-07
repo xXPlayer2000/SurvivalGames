@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Commands;
+package me.devcode.survivalgames.commands;
 
 import java.text.DecimalFormat;
 
@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.devcode.SurvivalGames.SurvivalGames;
+import me.devcode.survivalgames.SurvivalGames;
 
 public class Stats implements CommandExecutor{
 	
@@ -96,7 +96,7 @@ public class Stats implements CommandExecutor{
                 return true;
         	}else{
             OfflinePlayer p = Bukkit.getOfflinePlayer(args[0]);
-            if(!SurvivalGames.plugin.stats.getBooleanMethod("SurvivalGames", "UUID", p.getUniqueId().toString())) {
+            if(!SurvivalGames.plugin.stats.getBooleanMethod("survivalgames", "UUID", p.getUniqueId().toString())) {
                 cs.sendMessage("§cNo Stats found.");
                 return true;
             }

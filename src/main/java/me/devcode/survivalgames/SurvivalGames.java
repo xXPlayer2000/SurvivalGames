@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames;
+package me.devcode.survivalgames;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
@@ -21,56 +21,53 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-import me.devcode.SurvivalGames.Commands.SetLobby;
-import me.devcode.SurvivalGames.Commands.SetSpawn;
-import me.devcode.SurvivalGames.Commands.SetSpawn2;
-import me.devcode.SurvivalGames.Commands.Start;
-import me.devcode.SurvivalGames.Commands.Stats;
-import me.devcode.SurvivalGames.Countdowns.CountdownHandler;
-import me.devcode.SurvivalGames.Listeners.CancelListeners;
-import me.devcode.SurvivalGames.Listeners.ChestListeners;
-import me.devcode.SurvivalGames.Listeners.DeathListener;
-import me.devcode.SurvivalGames.Listeners.JoinListener;
-import me.devcode.SurvivalGames.Listeners.LoginListener;
-import me.devcode.SurvivalGames.Listeners.QuitListener;
-import me.devcode.SurvivalGames.MySQL.AsyncMySQL;
-import me.devcode.SurvivalGames.MySQL.MySQLMethods;
-import me.devcode.SurvivalGames.MySQL.MySQLStats;
-import me.devcode.SurvivalGames.MySQL.MySQLUtils;
-import me.devcode.SurvivalGames.Utils.IngameUtils;
-import me.devcode.SurvivalGames.Utils.MessageUtils;
-import me.devcode.SurvivalGames.Utils.PlayerUtils;
-import me.devcode.SurvivalGames.Utils.Status;
+import me.devcode.survivalgames.commands.SetLobby;
+import me.devcode.survivalgames.commands.SetSpawn;
+import me.devcode.survivalgames.commands.SetSpawn2;
+import me.devcode.survivalgames.commands.Start;
+import me.devcode.survivalgames.commands.Stats;
+import me.devcode.survivalgames.countdown.CountdownHandler;
+import me.devcode.survivalgames.listeners.CancelListeners;
+import me.devcode.survivalgames.listeners.ChestListeners;
+import me.devcode.survivalgames.listeners.DeathListener;
+import me.devcode.survivalgames.listeners.JoinListener;
+import me.devcode.survivalgames.listeners.LoginListener;
+import me.devcode.survivalgames.listeners.QuitListener;
+import me.devcode.survivalgames.mysql.AsyncMySql;
+import me.devcode.survivalgames.mysql.MySqlMethods;
+import me.devcode.survivalgames.mysql.MySqlStats;
+import me.devcode.survivalgames.mysql.MySqlUtils;
+import me.devcode.survivalgames.utils.IngameUtils;
+import me.devcode.survivalgames.utils.MessageUtils;
+import me.devcode.survivalgames.utils.PlayerUtils;
+import me.devcode.survivalgames.utils.Status;
 
 public class SurvivalGames extends JavaPlugin{
 
     public static SurvivalGames plugin;
-    public AsyncMySQL mysql;
-    public MySQLMethods methods = new MySQLMethods();
-    public MySQLStats stats = new MySQLStats();
-    public MySQLUtils mysqlUtils = new MySQLUtils();
+    public AsyncMySql mysql;
+    public MySqlMethods methods = new MySqlMethods();
+    public MySqlStats stats = new MySqlStats();
+    public MySqlUtils mysqlUtils = new MySqlUtils();
     public Status status;
     public PlayerUtils playerUtils = new PlayerUtils();
     public MessageUtils messageUtils;
     public IngameUtils ingameUtils = new IngameUtils();
     public CountdownHandler countdownHandler = new CountdownHandler();
     public ChestListeners chestListeners = new ChestListeners();
-    public File file = new File("plugins/SurvivalGames", "chest.yml");
+    public File file = new File("plugins/survivalgames", "chest.yml");
     public FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
     @Override
     public void onEnable() {
         plugin = this;
         status = Status.LOBBY;
         messageUtils = new MessageUtils();
-        System.out.println("SurvivalGames enabled.");
-        getConfig().addDefault("MySQL.Host", "localhost");
-        getConfig().addDefault("MySQL.User", "USER");
-        getConfig().addDefault("MySQL.Password", "PASSWORD");
-        getConfig().addDefault("MySQL.Database", "DATABASE");
+        System.out.println("survivalgames enabled.");
+        getConfig().addDefault("mysql.Host", "localhost");
+        getConfig().addDefault("mysql.User", "USER");
+        getConfig().addDefault("mysql.Password", "PASSWORD");
+        getConfig().addDefault("mysql.Database", "DATABASE");
         getConfig().addDefault("Worlds.Load", Arrays.asList("world2", "world3"));
         getConfig().addDefault("Blocks.Place.Allowed", Arrays.asList(1,2,3,4));
         getConfig().addDefault("Blocks.Break.Allowed", Arrays.asList(1,2,3,4));
@@ -116,7 +113,7 @@ public class SurvivalGames extends JavaPlugin{
         }
         new BukkitRunnable() {
                     @Override public void run() {
-                     //Check if MySQL is still connected if not > reconnect
+                     //Check if mysql is still connected if not > reconnect
                     mysql.getMySQL().checkConnection();
                     }
                 }.runTaskTimerAsynchronously(this, 1800,1800);
@@ -196,8 +193,8 @@ public class SurvivalGames extends JavaPlugin{
     }
 
     public void mysqlStuff() {
-        plugin.mysql = new AsyncMySQL(plugin, plugin.getConfig().getString("MySQL.Host"), 3306, plugin.getConfig().getString("MySQL.User"), plugin.getConfig().getString("MySQL.Password"),plugin.getConfig().getString("MySQL.Database"));
-        mysql.update("CREATE TABLE IF NOT EXISTS SurvivalGames(UUID varchar(64), NAME varchar(64), KILLS int, DEATHS int, WINS int, GAMES int);");
+        plugin.mysql = new AsyncMySql(plugin, plugin.getConfig().getString("mysql.Host"), 3306, plugin.getConfig().getString("mysql.User"), plugin.getConfig().getString("mysql.Password"),plugin.getConfig().getString("mysql.Database"));
+        mysql.update("CREATE TABLE IF NOT EXISTS survivalgames(UUID varchar(64), NAME varchar(64), KILLS int, DEATHS int, WINS int, GAMES int);");
         //methods.setRanks();
     }
 

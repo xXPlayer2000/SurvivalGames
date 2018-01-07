@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Listeners;
+package me.devcode.survivalgames.listeners;
 
 
 import org.bukkit.block.Block;
@@ -27,8 +27,8 @@ import org.bukkit.event.world.StructureGrowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.devcode.SurvivalGames.SurvivalGames;
-import me.devcode.SurvivalGames.Utils.Status;
+import me.devcode.survivalgames.SurvivalGames;
+import me.devcode.survivalgames.utils.Status;
 
 public class CancelListeners implements Listener {
 	

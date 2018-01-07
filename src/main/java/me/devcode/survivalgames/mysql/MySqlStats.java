@@ -1,13 +1,13 @@
-package me.devcode.SurvivalGames.MySQL;
+package me.devcode.survivalgames.mysql;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import me.devcode.SurvivalGames.SurvivalGames;
+import me.devcode.survivalgames.SurvivalGames;
 
-public class MySQLStats {
+public class MySqlStats {
 
 	/*
 	 * Nicht alle Methoden werden hier benutzt.

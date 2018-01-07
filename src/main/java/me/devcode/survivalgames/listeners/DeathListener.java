@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Listeners;
+package me.devcode.survivalgames.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import java.util.Random;
 import java.util.function.Consumer;
 
-import me.devcode.SurvivalGames.SurvivalGames;
+import me.devcode.survivalgames.SurvivalGames;
 
 public class DeathListener implements Listener{
 

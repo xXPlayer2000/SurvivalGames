@@ -1,13 +1,12 @@
-package me.devcode.SurvivalGames.Commands;
+package me.devcode.survivalgames.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.devcode.SurvivalGames.Countdowns.CountdownHandler;
-import me.devcode.SurvivalGames.SurvivalGames;
-import me.devcode.SurvivalGames.Utils.Status;
+import me.devcode.survivalgames.SurvivalGames;
+import me.devcode.survivalgames.utils.Status;
 
 
 public class Start implements CommandExecutor{

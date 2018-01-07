@@ -1,7 +1,7 @@
-name: SurvivalGames
+name: survivalgames
 version: 1.0
 author: devcode
-main: me.devcode.SurvivalGames.SurvivalGames
+main: me.devcode.survivalgames.survivalgames
 commands:
   setlobby:
   setspawn:

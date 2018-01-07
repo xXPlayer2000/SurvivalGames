@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Countdowns;
+package me.devcode.survivalgames.countdown;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -12,8 +12,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-import me.devcode.SurvivalGames.SurvivalGames;
-import me.devcode.SurvivalGames.Utils.Status;
+import me.devcode.survivalgames.SurvivalGames;
+import me.devcode.survivalgames.utils.Status;
 
 public class CountdownHandler {
     public int timer = 61;

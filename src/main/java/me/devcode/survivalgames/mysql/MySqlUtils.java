@@ -1,10 +1,10 @@
-package me.devcode.SurvivalGames.MySQL;
+package me.devcode.survivalgames.mysql;
 
 import java.util.HashMap;
 
 import org.bukkit.entity.Player;
 
-public class MySQLUtils extends MySQLMethods{
+public class MySqlUtils extends MySqlMethods {
 
 	private HashMap<String, Integer> kills = new HashMap<>();
 	private HashMap<String, Integer> deaths = new HashMap<>();
@@ -13,7 +13,7 @@ public class MySQLUtils extends MySQLMethods{
 	private HashMap<String, Integer> rank = new HashMap<>();
 	private HashMap<String, String> name = new HashMap<>();
 	public void updateStatsForPlayer(String uuid) {
-		setAllMethod("SurvivalGames", "UUID", uuid, name.get(uuid), getKillsByPlayer(uuid), getDeathsByPlayer(uuid), getWinsByPlayer(uuid), getSpieleByPlayer(uuid));
+		setAllMethod("survivalgames", "UUID", uuid, name.get(uuid), getKillsByPlayer(uuid), getDeathsByPlayer(uuid), getWinsByPlayer(uuid), getSpieleByPlayer(uuid));
 
 	}
 
@@ -22,7 +22,7 @@ public class MySQLUtils extends MySQLMethods{
 		deaths.put(player.getUniqueId().toString(), getDeaths(player.getUniqueId().toString()));
 		wins.put(player.getUniqueId().toString(), getWins(player.getUniqueId().toString()));
 		spiele.put(player.getUniqueId().toString(), getGames(player.getUniqueId().toString()));
-		rank.put(player.getUniqueId().toString(), getRank("SurvivalGames", "UUID", player.getUniqueId().toString(), "WINS"));
+		rank.put(player.getUniqueId().toString(), getRank("survivalgames", "UUID", player.getUniqueId().toString(), "WINS"));
 		name.put(player.getUniqueId().toString(), player.getName());
 	}
 

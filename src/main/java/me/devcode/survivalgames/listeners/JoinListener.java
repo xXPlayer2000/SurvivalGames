@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Listeners;
+package me.devcode.survivalgames.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -8,14 +8,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
 
-import java.sql.Time;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
-import me.devcode.SurvivalGames.SurvivalGames;
-import me.devcode.SurvivalGames.Utils.Status;
+import me.devcode.survivalgames.SurvivalGames;
+import me.devcode.survivalgames.utils.Status;
 
 public class JoinListener implements Listener{
 

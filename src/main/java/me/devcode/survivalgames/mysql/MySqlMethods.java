@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.MySQL;
+package me.devcode.survivalgames.mysql;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,17 +6,16 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
-import me.devcode.SurvivalGames.SurvivalGames;
-import me.devcode.SurvivalGames.SurvivalGames;
+import me.devcode.survivalgames.SurvivalGames;
 
-public class MySQLMethods {
+public class MySqlMethods {
 
 	public void createPlayer(String uuid, String name) {
 
-		if (!SurvivalGames.plugin.stats.getBooleanMethod("SurvivalGames", "UUID", uuid)) {
+		if (!SurvivalGames.plugin.stats.getBooleanMethod("survivalgames", "UUID", uuid)) {
 
 			PreparedStatement createPlayer = SurvivalGames.plugin.mysql
-					.prepare("INSERT INTO SurvivalGames(UUID, NAME, KILLS, DEATHS, WINS, GAMES) VALUES (?, ?, ?, ?, ?, ?);");
+					.prepare("INSERT INTO survivalgames(UUID, NAME, KILLS, DEATHS, WINS, GAMES) VALUES (?, ?, ?, ?, ?, ?);");
 			try {
 				createPlayer.setString(1, uuid);
 				createPlayer.setString(2, name);
@@ -73,42 +72,42 @@ public class MySQLMethods {
 	}
 
 	public Integer getGames(String uuid) {
-		if(!SurvivalGames.plugin.stats.getBooleanMethod("SurvivalGames", "UUID", uuid)) {
+		if(!SurvivalGames.plugin.stats.getBooleanMethod("survivalgames", "UUID", uuid)) {
 
 			return 0;
 		}
-		return SurvivalGames.plugin.stats.getIntMethod("SurvivalGames", "UUID",uuid,"GAMES");
+		return SurvivalGames.plugin.stats.getIntMethod("survivalgames", "UUID",uuid,"GAMES");
 	}
 
 	public Integer getWins(String uuid) {
-		if(!SurvivalGames.plugin.stats.getBooleanMethod("SurvivalGames", "UUID", uuid)) {
+		if(!SurvivalGames.plugin.stats.getBooleanMethod("survivalgames", "UUID", uuid)) {
 
 			return 0;
 		}
-		return SurvivalGames.plugin.stats.getIntMethod("SurvivalGames", "UUID",uuid,"WINS");
+		return SurvivalGames.plugin.stats.getIntMethod("survivalgames", "UUID",uuid,"WINS");
 	}
 
 	public Integer getKills(String uuid) {
-		if(!SurvivalGames.plugin.stats.getBooleanMethod("SurvivalGames", "UUID", uuid)) {
+		if(!SurvivalGames.plugin.stats.getBooleanMethod("survivalgames", "UUID", uuid)) {
 
 			return 0;
 		}
-		return SurvivalGames.plugin.stats.getIntMethod("SurvivalGames", "UUID",uuid,"KILLS");
+		return SurvivalGames.plugin.stats.getIntMethod("survivalgames", "UUID",uuid,"KILLS");
 	}
 
 	public Integer getDeaths(String uuid) {
-		if(!SurvivalGames.plugin.stats.getBooleanMethod("SurvivalGames", "UUID", uuid)) {
+		if(!SurvivalGames.plugin.stats.getBooleanMethod("survivalgames", "UUID", uuid)) {
 
 			return 0;
 		}
-		return SurvivalGames.plugin.stats.getIntMethod("SurvivalGames", "UUID",uuid,"DEATHS");
+		return SurvivalGames.plugin.stats.getIntMethod("survivalgames", "UUID",uuid,"DEATHS");
 	}
 	public static HashMap<Integer, String> rang = new HashMap<>();
 	public static HashMap<Integer, String> WINS = new HashMap<>();
 
 	public void setRanks() {
 		try {
-			PreparedStatement ps = SurvivalGames.plugin.mysql.prepare("SELECT name FROM SurvivalGames ORDER BY WINS DESC LIMIT 10");
+			PreparedStatement ps = SurvivalGames.plugin.mysql.prepare("SELECT name FROM survivalgames ORDER BY WINS DESC LIMIT 10");
 			ResultSet rs =ps.executeQuery();
 			int i = 0;
 			while(rs.next()) {
@@ -116,7 +115,7 @@ public class MySQLMethods {
 
 
 				rang.put(i, rs.getString("NAME"));
-				WINS.put(i, SurvivalGames.plugin.stats.getStringMethod("SurvivalGames", "NAME", rang.get(i), "WINS"));
+				WINS.put(i, SurvivalGames.plugin.stats.getStringMethod("survivalgames", "NAME", rang.get(i), "WINS"));
 			}
 			ps.close();
 		}catch (SQLException e) {
@@ -126,7 +125,7 @@ public class MySQLMethods {
 	}
 
 	public void setAllMethod(String table, String from, String uuid,String name, Integer kills, Integer deaths, Integer wins, Integer games) {
-		if (!SurvivalGames.plugin.stats.getBooleanMethod("SurvivalGames", "UUID", uuid)) {
+		if (!SurvivalGames.plugin.stats.getBooleanMethod("survivalgames", "UUID", uuid)) {
 			createPlayer(uuid, name);
 			setAllMethod(table, from, uuid, name, kills, deaths, wins, games);
 			return;

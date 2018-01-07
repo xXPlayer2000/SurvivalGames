@@ -1,4 +1,4 @@
-package me.devcode.SurvivalGames.Utils;
+package me.devcode.survivalgames.utils;
 
 import java.util.ArrayList;
 import java.util.List;
