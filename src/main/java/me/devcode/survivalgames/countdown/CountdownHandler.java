@@ -13,6 +13,10 @@ import me.devcode.survivalgames.utils.Status;
 public class CountdownHandler {
     public int timer = 61;
     public boolean started = false;
+
+    /**
+     * All Countdowns for SurvivalGames
+     */
     public void onLobby() {
         started = true;
 
