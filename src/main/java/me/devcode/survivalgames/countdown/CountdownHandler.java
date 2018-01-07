@@ -127,6 +127,18 @@ public class CountdownHandler {
                                     SurvivalGames.plugin.ingameUtils.updateScoreboard(player)));
 
 
+                            if(inGameTimer == 750) {
+                                SurvivalGames.plugin.playerUtils.getPlayers().forEach((player ->
+                                       player.sendMessage(SurvivalGames.plugin.messageUtils.getRefilled());
+                                SurvivalGames.plugin.chestListeners.getSgChests().clear();
+                            }
+
+                            if(inGameTimer == 120) {
+                                SurvivalGames.plugin.playerUtils.getPlayers().forEach((player ->
+                                        player.sendMessage(SurvivalGames.plugin.messageUtils.getRefilled());
+                                SurvivalGames.plugin.chestListeners.getSgChests().clear();
+                            }
+
                             if (inGameTimer == 0) {
                                 SurvivalGames.plugin.playerUtils.getPlayers().forEach((player ->
 

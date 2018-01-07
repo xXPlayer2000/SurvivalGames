@@ -24,7 +24,7 @@ import me.devcode.survivalgames.utils.Status;
 @Getter
 public class ChestListeners implements Listener{
 
-    private HashMap<Location, Inventory> sgchests = new HashMap<>();
+    private HashMap<Location, Inventory> sgChests = new HashMap<>();
     private ArrayList<Location> placed = new ArrayList<>();
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
@@ -46,8 +46,8 @@ public class ChestListeners implements Listener{
                         }
 
                         e.setCancelled(true);
-                        if(sgchests.containsKey(e.getClickedBlock().getLocation())) {
-                            player.openInventory(sgchests.get(e.getClickedBlock().getLocation()));
+                        if(sgChests.containsKey(e.getClickedBlock().getLocation())) {
+                            player.openInventory(sgChests.get(e.getClickedBlock().getLocation()));
                             return;
                         }
                         Random ran = new Random();
@@ -88,8 +88,8 @@ public class ChestListeners implements Listener{
                             inv.setItem(chestrandom, items.get(sizeitems));
 
                         }
-                        sgchests.put(e.getClickedBlock().getLocation(), inv);
-                        e.getPlayer().openInventory(sgchests.get(e.getClickedBlock().getLocation()));
+                        sgChests.put(e.getClickedBlock().getLocation(), inv);
+                        e.getPlayer().openInventory(sgChests.get(e.getClickedBlock().getLocation()));
                     }
                 }
             }
