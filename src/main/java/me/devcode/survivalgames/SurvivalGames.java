@@ -92,9 +92,11 @@ public class SurvivalGames extends JavaPlugin{
         registerEvents();
         registerCommands();
         mysqlStuff();
+        //Creating Worlds (Can be added in the config.yml)
        getConfig().getStringList("Worlds.Load").forEach(worlds -> {
            new WorldCreator(worlds).createWorld();
        });
+        //Cancel auto saving removing entitys and creating a backup
             Bukkit.getWorlds().forEach(world -> {
             Bukkit.unloadWorld(world.getName(), false);
         world.getEntities().forEach(en -> {
